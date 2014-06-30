@@ -1,0 +1,53 @@
+### "assets"
+assets:
+    - .jpg
+    - .png
+    - .css
+    - .js
+
+### "code"
+code:
+    - .java|idio
+    - .sh|idio
+    - .yaml|idio
+    - Dockerfile|idio:
+        - idio: { lexer: bash }
+
+### "simulation"
+simulation:
+    - run.sh|bash:
+        - bash: {
+            write-stderr-to-stdout : True,
+            add-new-files: True
+            }
+        - .java:
+            - output: False
+        - lib/*.jar:
+            - output: False
+
+### "analysis"
+analysis:
+    - plots.R|idio|rint|pyg:
+        - simulation
+        - rint: { add-new-files: True }
+
+deps:
+    - assets
+    - code
+    - simulation
+    - analysis
+
+### "slides"
+slides:
+    - slides/index.md|jinja|slides|applytemplate:
+        - title: Agent Based Modelling Workflows
+        - slides: { 
+            slide-header: "<section class=\"slide\"><p>@ananelson &bull; http://dexy.it &bull; http://github.com/ananelson/swarmfest</p>"
+            }
+        - slides/_template.html
+        - deps
+
+speaker-notes:
+    - slides/index.md|jinja|markdown|easyhtml:
+        - output-name: speaker-notes.html
+        - deps
