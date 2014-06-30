@@ -1,5 +1,4 @@
 # The Practice of Reproducibility
-; TODO Put twitter handle, repo info on each page
 
 
 # Interactive -> Not Reproducible
@@ -65,12 +64,12 @@ Here's some configuration:
 
 Telling dexy to run this script:
 
-{{ d['/run.sh|idio'] | trim }}
+{{ d['/compile-and-run-sim.sh|idio'] | trim }}
 
 And the result looks like this:
 
 <pre>
-{{ d['/run.sh|bash'] | trim | e }}
+{{ d['/compile-and-run-sim.sh|bash'] | trim | e }}
 </pre>
 
 
@@ -114,10 +113,11 @@ no tempering.
 
 ## Docker
 
-* <http://github.com/ananelson/swarmfest2014>
 * GUI requires Xvfb or similar
 
-{{ d['/Dockerfile|idio'] }}
+{{ d['/Dockerfile|idio']['install-jdk'] }}
+{{ d['/Dockerfile|idio']['install-python'] }}
+{{ d['/Dockerfile|idio']['install-r'] }}
 
 
 ## What next?

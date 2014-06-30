@@ -15,7 +15,7 @@ code:
 
 ### "simulation"
 simulation:
-    - run.sh|bash:
+    - compile-and-run-sim.sh|bash:
         - bash: {
             write-stderr-to-stdout : True,
             add-new-files: True
@@ -42,12 +42,18 @@ slides:
     - slides/index.md|jinja|slides|applytemplate:
         - title: Agent Based Modelling Workflows
         - slides: { 
-            slide-header: "<section class=\"slide\"><p>@ananelson &bull; http://dexy.it &bull; http://github.com/ananelson/swarmfest</p>"
+        slide-header: "
+            <section class=\"slide\">
+            <p>
+                <a href=\"http://twitter.com/ananelson\">@ananelson</a> &bull;
+                <a href=\"http://dexy.it\">dexy.it</a> &bull;
+                <a href=\"http://github.com/ananelson/swarmfest2014\">github.com/ananelson/swarmfest2014</a>
+            </p>"
             }
         - slides/_template.html
         - deps
 
 speaker-notes:
-    - slides/index.md|jinja|markdown|easyhtml:
+    - slides/index.md|jinja|speakernotes|easyhtml:
         - output-name: speaker-notes.html
         - deps

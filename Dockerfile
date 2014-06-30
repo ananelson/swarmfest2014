@@ -27,31 +27,28 @@ RUN apt-get install -y vim
 RUN apt-get install -y wget
 RUN apt-get install -y unzip
 RUN apt-get install -y tree
+RUN apt-get install -y rsync
 
 # Fake fuse install so we can install openjdk
 RUN apt-get install -y fuse || :
 RUN rm -rf /var/lib/dpkg/info/fuse.postinst
 RUN apt-get install -y fuse
 
-# Install OpenJDK
+### "install-jdk"
 RUN apt-get install -y openjdk-7-jdk
 
-# Install Python
+### "install-python"
 RUN apt-get install -y python
 RUN apt-get install -y python-dev
 RUN apt-get install -y python-pip
-
-# Install Dexy
 RUN pip install dexy
 
-# Install R
+### "install-r"
 RUN apt-get install -y r-base
-
-# Install R packages
 ENV CRAN_MIRROR http://cran.case.edu/
 RUN R -e "install.packages(\"plyr\", repos=\"$CRAN_MIRROR\")"
 
-# Create a user
+### "create-user"
 RUN useradd -m -p $(perl -e'print crypt("foobarbaz", "aa")') repro
 RUN adduser repro sudo
 
